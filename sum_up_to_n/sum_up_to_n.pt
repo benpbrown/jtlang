@@ -1,0 +1,31 @@
+/*
+Takes a given number, n, and sums the numbers up to and including that
+number, and prints the result.
+
+e.g. the number 5 has the result 1+2+3+4+5.
+
+*/
+
+Program P(Input, Output) {
+	var n, sum, i : integer;
+
+	write("What number do you wish to sum up-to-and-including? ");
+	read(n); readln();
+
+	if (n < 1) {
+		write("The number must be positive.");
+		writeln();
+		
+	} else {
+		i = 0;
+		sum = 0;
+		loop {
+			break when(i > n);
+			sum = sum + i;
+			i = i + 1;
+		}
+	
+		write("The sum from 1 to ", n, " is ", sum, ".");
+		writeln(); 
+	}
+}
