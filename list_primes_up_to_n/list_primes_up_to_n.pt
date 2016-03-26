@@ -1,0 +1,49 @@
+/*
+Takes a given number, n, and finds the prime numbers up to an including
+that n. Uses a fixed-size n.
+
+Uses the Sieve of Eratosthenes.
+
+*/
+
+Program P(Input, Output) {
+	let n = 1024;
+	let sqrtn = 32; // this is Math.sqrt(1024)
+	var A : array [2 .. 1024] of Boolean;
+	var i, j : integer;
+
+	i = 2;
+	loop {
+		break when(i > n);
+		A[i] = true;
+		i = i + 1;
+	}
+
+	write("Finding primes up to ", n);
+	writeln();
+	
+	
+	i = 2;
+	loop {
+		break when(i > sqrtn);
+		if(A[i]) {
+			j = i * i;
+			loop {
+				break when(j > n);
+				A[j] = false;
+				j = j + i;
+			}
+		}
+		i = i + 1;
+	}
+
+	i = 2;
+	loop {
+		break when(i > n);
+		if (A[i]) {
+			write(i);
+			writeln();
+		}
+		i = i + 1;
+	}
+}
