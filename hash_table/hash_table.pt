@@ -1,0 +1,70 @@
+/*
+	An add-only hash table that maps from a string to an integer.
+*/
+
+program P(Input, Output) {
+	
+	var i : integer;
+	var s : string;
+
+	class HashTable {
+		let tableSize = 1024;
+		var A : array [0 .. tableSize] of integer;
+
+		function hasher(key : string, var hashOut : integer) {
+			var i : integer;
+			
+			hashOut = 0;
+			i = 1;
+			loop {
+				break when (i > #key);
+				hashOut = hashOut + ord(key @ i : i);
+				i = i + 1;
+			}
+			hashOut = hashOut mod tableSize;
+			
+		}
+		
+		public function add(newValue : integer, newKey : string) {
+			var hash : integer;
+			hasher(newKey, hash);
+			A[hash] = newValue;
+		}
+
+		public function get(key : string, var outInt : integer) {
+			var hash : integer;
+			hasher(key, hash);
+			outInt = A[hash];
+		}
+
+	}
+
+	function getKeyFromUser(var key : string) {
+		write("Please enter the key (a string): ");
+		read(key); readln();
+	}
+
+	loop {
+		break when (false);
+		write("Would you like to add (A) or get (G) something? ");
+		read(s); readln();
+
+		if (s == "A") {
+			getKeyFromUser(s);
+			write("Please enter the value (an integer): ");
+			read(i); readln();
+			add(i, s);
+			write("Added mapping from " + s + " to ", i);
+			writeln();
+		} elsif (s == "G") {
+			getKeyFromUser(s);
+			get(s, i);
+			write("The value for " + s + " is ", i);
+			writeln();
+		} else {
+			write("Valid inputs are only A or G");
+			writeln();
+		}
+	}
+
+}
