@@ -1,0 +1,46 @@
+/*
+This program prints the multiplication tables for up to n x n, where
+n is a constant specified as `factor`. 
+
+March 26, 2016
+*/
+
+program P(Input, Output) {
+	var i, j : integer;
+	let factor = 4;
+
+	i = 1;
+	write("		");
+	loop {
+		break when (i > factor);
+		write(i);
+		write("	");
+		i = i + 1;
+	}
+	writeln();
+	i = 1;
+	write("	 ");
+	loop {
+		break when (i > 65);
+		write("-");
+		i = i + 1;
+	}
+	writeln();
+	j = 1;
+	loop {
+		break when (j > factor);
+		write(j);
+		write("	");
+		i = 1;
+		loop {
+			break when (i > factor);
+			write(i * j);
+			write("	");
+			i = i + 1;
+		}
+		writeln();
+		j = j + 1;
+	}
+
+
+}
